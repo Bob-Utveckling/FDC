@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Enter file name to check its duplicate or select two folders</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body>
+        
+        <div style="font-family: Arial; border:1px solid darkblue; width:400px; padding: 5px; font-size: 20px; background-color: orange; margin: 15px;">
+            <form method="post" action="check_1_folder/folder/check_folder_for_duplicates/">
+                <h4>Enter the path and the filename for the file you want to check, eg. c:/Test Folder/myFile.txt</h4>
+                    <input name="fileName" type="text" value="c:\BL Test\mafatih.pdf">                
+                <h4>Enter path to check all files inside for duplicates</h4>
+                    <input name="folderName" type="text" value="c:\BL Test">
+                    <input type="submit" value="Check">
+            </form>
+            <i style="font-size:10px;">Format the file name path and the folder to check. They should be exactly the same in terms of slashes or backslashes since we check these in the backend program to avoid showing file as duplicate while it actually is the same file and should not be available for removal</i>
+        </div>
+
+        <div style="font-family: Arial; border:1px solid darkblue; width:400px; padding: 5px; font-size: 20px; background-color: yellow; margin: 15px;">
+            <form method="post" action="check_1_folder/folder/show_all_files_and_folders/">
+                <h4>Enter path to see all files and folders</h4>
+                    <input name="folderName" type="text" value="c:\BL Test">
+                    <input type="submit" value="Check">
+            </form>
+        </div>
+    
+        <div style="font-family: Arial; border:1px solid darkblue; width:400px; padding: 5px; font-size: 20px; background-color: yellowgreen; margin: 15px;">
+            <form method="post" action="check_2_folders/folders">
+                <h2>Compare the two paths for duplicates</h2>
+                <h3>Enter path 1</h3>
+                <input name="dir1" type="text" value="c:\BL Test">
+                <h3>Enter path 2</h3>
+                <input name="dir2" type="text" value="c:\BL Test2">
+                <p></p>            
+                <input type="submit" value="Compare">                        
+            </form>
+        </div>
+        
+        <a href="check_1_folder/folder">Check 1 folder for duplicates eg. BL_Test</a><br>
+        <a href="check_1_folder/folder/Folder1">Check "Folder1"</a><br>        
+        <a href="check_2_folders/folders">Check in 2 folders for duplicates</a><br>
+        <p><p><p>
+        <a href="rest/hello/file1">Click for sub sub</a> |
+        <a href="rest/hello">Click here</a> |
+        <a href="rest/hello1">Click here 1</a> |
+        <a href="rest/hello2">Right folder, right class</a>
+        
+    </body>
+</html>
