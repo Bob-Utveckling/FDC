@@ -131,7 +131,7 @@ public class Check_1_folder {
         /*System.out.println(typeAndNameList.size());
         System.out.println(typeAndNameList.get(f2));*/
         //JSONObject obj = new JSONObject(typeAndNameList);
-        //JsonObject obj = new JsonObject(typeAndNameList);
+        //JsonObject obj = new JsonObject(typeAndNameList);        
         Gson gson = new Gson();
         String json = gson.toJson(typeAndNameList);
 
