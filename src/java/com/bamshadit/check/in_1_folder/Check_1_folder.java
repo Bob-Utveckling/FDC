@@ -47,7 +47,10 @@ public class Check_1_folder {
     Filewalker fw;
 
     @EJB
-    DuplicateCheckerInOneFolder dc1f;
+    DuplicateChecker_basedOnMD5 dcbmd5;
+    
+    @EJB
+    DuplicateChecker_basedOnFileName dcbfn;
 
     @POST
     @Path("/folder/check_folder_for_duplicates")
@@ -58,7 +61,9 @@ public class Check_1_folder {
             @FormParam("folderName") String folderName,
             @FormParam("fileName") String fileName) {
 
-        List<File> receivedFiles = dc1f.getDuplicateFiles(folderName, fileName);
+        List<File> receivedFiles = dcbmd5.getDuplicateFiles(folderName, fileName);
+        //List<File> receivedFiles = dcbfn.getDuplicateFiles(folderName, fileName);
+
         
         /*Remove the original file from list since we keep that.
         * simple but if we get it complex, then the folderName
