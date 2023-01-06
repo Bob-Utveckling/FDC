@@ -12,11 +12,18 @@ and open the template in the editor.
     </head>
 
     <body>
+        <div style="font-family: Arial; border:1px solid darkblue; width:400px; padding: 5px; font-size: 20px; background-color: purple; margin: 15px; color: white;">
+            <form method="post" action="check_1_folder/folder/get_all_duplicates_of/">
+                <h4>Find duplicates of all files on path:</h4>
+                    <input name="folderName" type="text" value="c:\BL Test">
+                    <input type="submit" value="Check">
+            </form>
+        </div>
         
         <div style="font-family: Arial; border:1px solid darkblue; width:400px; padding: 5px; font-size: 20px; background-color: orange; margin: 15px;">
             <form method="post" action="check_1_folder/folder/check_folder_for_duplicates/">
                 <h4>Enter the path and the filename for the file you want to check, eg. c:/Test Folder/myFile.txt</h4>
-                    <input name="fileName" type="text" value="c:\BL Test\mafatih.pdf">                
+                    <input name="fileName" type="text" value="c:\BL Test\text file.txt">                
                 <h4>Enter path to check all files inside for duplicates</h4>
                     <input name="folderName" type="text" value="c:\BL Test">
                     <input type="submit" value="Check">
@@ -33,7 +40,7 @@ and open the template in the editor.
         </div>
     
         <div style="font-family: Arial; border:1px solid darkblue; width:400px; padding: 5px; font-size: 20px; background-color: yellowgreen; margin: 15px;">
-            <form method="post" action="check_2_folders/folders">
+            <form method="post" action="check_2_folders/folders/get_all_duplicates_on_two_paths/">
                 <h2>Compare the two paths for duplicates</h2>
                 <h3>Enter path 1</h3>
                 <input name="dir1" type="text" value="c:\BL Test">

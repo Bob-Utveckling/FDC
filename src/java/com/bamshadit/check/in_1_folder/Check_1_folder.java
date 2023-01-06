@@ -6,6 +6,10 @@ package com.bamshadit.check.in_1_folder;
  * and open the template in the editor.
  */
 //import com.bamshadit.check.in_1_folder.Filewalker;
+import com.bamshadit.resources.CollectMd5sAndTheirFiles;
+import com.bamshadit.resources.MD5Checksum;
+import com.bamshadit.resources.Filewalker;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +29,8 @@ import javax.ws.rs.core.MediaType;
 //import javax.json.JsonObject;
 //import org.json.JSONObject;
 import com.google.gson.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * REST Web Service
@@ -47,11 +53,41 @@ public class Check_1_folder {
     Filewalker fw;
 
     @EJB
-    DuplicateChecker_basedOnMD5 dcbmd5;
-    
+    DuplicateChecker_basedOnMD5 dcbmd5;    
     @EJB
     DuplicateChecker_basedOnFileName dcbfn;
+    @EJB
+    MD5Checksum md5Checksum;
+    @EJB
+    CollectMd5sAndTheirFiles collectMd5sAndTheirFiles;
+    
+    @POST
+    @Path("/folder/get_all_duplicates_of")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getAllDuplicatesOf(@FormParam("folderName") String folderName) {
+       
+        List<File> receivedFiles = fw.walk(folderName);        
+        /*Set<String> MD5s = new HashSet<String>();
+        for (File f:receivedFiles) {            
+            MD5s.add(md5Checksum.getMD5(f.getAbsolutePath()));
+        } */               
 
+        HashMap<String,List<String>> Md5sAndTheirFiles = new HashMap<String,List<String>>();
+        Md5sAndTheirFiles = collectMd5sAndTheirFiles.collectAndReturn(receivedFiles);
+        
+        Gson gson = new Gson();
+        //String json = gson.toJson(MD5s);
+        String json = gson.toJson(Md5sAndTheirFiles);
+        //String json = gson.toJson(allMd5s);
+        System.out.println("FINAL: " + json.toString());
+        //return (typeAndNameList.toString());
+        receivedFiles.clear();
+        //return "test";
+        return (json);
+        //return ("{\"name\":\"value\", \"name2\":\"" + "name" + "\"}");
+        
+    }
+    
     @POST
     @Path("/folder/check_folder_for_duplicates")
     @Produces(MediaType.APPLICATION_JSON)
