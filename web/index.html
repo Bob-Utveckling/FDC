@@ -71,10 +71,22 @@ and open the template in the editor.
                     <input name="newPath" type="text" value="C:\BL_Test3">                                        
                     <input type="submit" value="Move">                        
                 </form>
-            </div>
-            
+            </div>            
         </div>
         
+        <div style="font-family: Arial; border:1px solid darkblue; width:400px; padding: 5px; font-size: 20px; background-color: lightblue; margin: 15px;">
+            <form method="post" action="suggest_similarity/">
+                <h2>Get suggestions for similar files</h2>
+                <h3>Enter path to file:</h3>
+                <input name="fileToCheck" type="text" value="c:\BL_Test3\m - Copy.pdf">
+                <h3>Enter Path to look in for suggestions:</h3>
+                <input name="whereToLook" type="text" value="c:\BL_Test4">
+                <p></p>       
+                <input type="submit" value="Get suggestions">                        
+            </form>
+        </div>
+
+        <div style="font-size: 10px;"><br>Debugging
         <a href="check_1_folder/folder">Check 1 folder for duplicates eg. BL_Test</a><br>
         <a href="check_1_folder/folder/Folder1">Check "Folder1"</a><br>        
         <a href="check_2_folders/folders">Check in 2 folders for duplicates</a><br>
@@ -83,6 +95,7 @@ and open the template in the editor.
         <a href="rest/hello">Click here</a> |
         <a href="rest/hello1">Click here 1</a> |
         <a href="rest/hello2">Right folder, right class</a>
+        </div>
         
     </body>
 </html>
