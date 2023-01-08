@@ -46,9 +46,33 @@ and open the template in the editor.
                 <input name="dir1" type="text" value="c:\BL_Test3">
                 <h3>Enter path 2</h3>
                 <input name="dir2" type="text" value="c:\BL_Test4">
-                <p></p>            
+                <p></p>       
                 <input type="submit" value="Compare">                        
             </form>
+        </div>
+
+        <div style="font-family: Arial; border:1px solid darkblue; width:400px; padding: 5px; font-size: 20px; background-color: brown; margin: 15px;">
+            <h2>File Operations:</h2>
+            <div style="margin: 10px; background-color: menu;">
+                <form method="get" action="file_operations/delete/">
+                    
+                    <h3>To delete file, enter its path:</h3>
+                    <input name="filePath" type="text" value="C:\BL_Test4\m - Copy.pdf">
+                    <p></p>
+                    <input type="submit" value="Delete">                        
+                </form>                
+            </div>
+            <p></p>
+            <div style="margin: 10px; background-color: menu;">
+                <form method="post" action="file_operations/move/">
+                    <h3>To move file, enter its current path:</h3>
+                    <input name="currentPath" type="text" value="C:\BL_Test4\m - Copy.pdf">
+                    <h3>And now the path to move to:</h3>
+                    <input name="newPath" type="text" value="C:\BL_Test3">                                        
+                    <input type="submit" value="Move">                        
+                </form>
+            </div>
+            
         </div>
         
         <a href="check_1_folder/folder">Check 1 folder for duplicates eg. BL_Test</a><br>
