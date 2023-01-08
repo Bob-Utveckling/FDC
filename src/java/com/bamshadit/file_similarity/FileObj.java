@@ -9,14 +9,24 @@ package com.bamshadit.file_similarity;
  *
  * @author Bamshad
  */
-public class FileObj {
+public class FileObj implements Comparable<FileObj>{
     String fileName;
     String filePath;
     int name_ranking_for_chars;
     int name_ranking_for_ordered_chars;
     int path_ranking;
     long size_ranking;
+    long totalscore;
 
+    public int compareTo(FileObj compareFileObjs) {
+        int compareScore = (int) ((FileObj) compareFileObjs).getTotalscore();
+        //ascending
+        //return (int) this.totalscore - compareScore;
+        //descending
+        return compareScore - (int) this.totalscore;
+
+    }
+        
     public FileObj(String fileName, String filePath, int name_ranking_for_chars, int name_ranking_for_ordered_chars, int path_ranking, long size_ranking) {
         this.fileName = fileName;
         this.filePath = filePath;
@@ -26,6 +36,16 @@ public class FileObj {
         this.size_ranking = size_ranking;
     }
 
+    public long getTotalscore() {
+        return totalscore;
+    }
+
+    public void setTotalscore(long totalscore) {
+        this.totalscore = totalscore;
+    }
+
+    
+    
     public String getFileName() {
         return fileName;
     }

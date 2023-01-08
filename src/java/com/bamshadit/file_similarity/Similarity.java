@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import javax.ws.rs.core.Context;
@@ -63,7 +64,8 @@ public class Similarity {
             ));
         }
         
-        //String result = "Sorted based on similarity 1 2 3 4 5";
+        updateFinalSocres(fobjects);
+        Collections.sort(fobjects);
         
         Gson gson = new Gson();
         String json = gson.toJson(fobjects);        
@@ -71,9 +73,27 @@ public class Similarity {
         //return ("{\"name\":\"value\", \"dir\":\"" + folderName + "\"}");
     }
     
+    public void updateFinalSocres(List<FileObj> fobjs) {
+        for (int i=0; i<fobjs.size(); i++) {
+            fobjs.get(i).setTotalscore(fobjs.get(i).getName_ranking_for_chars()+
+                    fobjs.get(i).getName_ranking_for_ordered_chars()+
+                    fobjs.get(i).getPath_ranking() +
+                    fobjs.get(i).getSize_ranking());
+        }
+    }
+    
     public int rank_size(long myLength, long fLength) {
         //within a threshold
         int score = 0;
+        if (myLength==fLength) {
+            score = 4;
+        } else
+        if (myLength/fLength < 2 || myLength/fLength > 0.5) {
+            score = 1;
+        } else {
+            score = 0;
+        }
+        System.out.println("rank_size: " + score);
         return score;
     }
     
@@ -87,8 +107,12 @@ public class Similarity {
     public int rank_name_with_ordered_chars(String myFileName, String fFileName) {
         int score = 0;
         for (int i=0; i<fFileName.length(); i++) {
-            
+            if (i>=myFileName.length()) { break; }
+            if (fFileName.contains(myFileName.substring(0, i))) {
+                score += 1;
+            }
         }
+        System.out.println("rank_name_with_ordered_chars: " + score);
         return score;
     }
     
@@ -102,6 +126,7 @@ public class Similarity {
                 score += 1;
             }
         }
+        System.out.println("rank_name_with_chars: " + score);
         return score;
     }
 
